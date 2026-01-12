@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earnest Tours | Experience the World</title>
+    <meta name="description"
+        content="Discover your next adventure with Earnest Tours. Curated travel experiences, exclusive packages, and unforgettable journeys.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="#" class="logo">Earnest<span class="logo-accent">Tours</span></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="destinations.html" class="nav-link">Destinations</a></li>
+                    <li><a href="packages.html" class="nav-link">Packages</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="#blog" class="nav-link">Blog</a></li>
+                    <li><a href="#contact" class="btn btn-primary">Book Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <video class="hero-video" autoplay muted loop playsinline
+                poster="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1600">
+                <source src="https://videos.pexels.com/video-files/2169880/2169880-uhd_2560_1440_30fps.mp4"
+                    type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="hero-bg-overlay"></div>
+            <div class="container hero-content">
+                <h1 class="hero-title">
+                    <span class="script-accent">Discover</span>
+                    Your Next Great Adventure
+                </h1>
+                <p class="hero-subtitle">Curated journeys designed for the modern explorer.</p>
+
+                <!-- Search Interface -->
+                <div class="search-interface card">
+                    <form class="search-form" onsubmit="event.preventDefault();">
+                        <div class="form-group">
+                            <label for="destination">Where to?</label>
+                            <div class="select-wrapper">
+                                <select id="destination" name="destination">
+                                    <option value="" disabled selected>Select Destination</option>
+                                    <option value="europe">Europe</option>
+                                    <option value="asia">Asia</option>
+                                    <option value="americas">The Americas</option>
+                                    <option value="africa">Africa</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkin">Dates</label>
+                            <input type="date" id="checkin" name="checkin">
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Guests</label>
+                            <select id="guests" name="guests">
+                                <option value="1">1 Guest</option>
+                                <option value="2" selected>2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4+">4+ Guests</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary search-btn">Search Flights</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section services-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle script-accent">Why Choose Us</span>
+                    <h2 class="section-title">Travel with Confidence</h2>
+                </div>
+                <!-- Carousel container would go here - simplified grid for now/skeleton -->
+                <div class="services-grid">
+                    <div class="service-card card">
+                        <div class="service-icon">
+                            <img src="assets/icon_glider.png" alt="Glider Icon">
+                        </div>
+                        <h3>Seamless Booking</h3>
+                        <p>Easy, transparent booking process with no hidden fees.</p>
+                    </div>
+                    <div class="service-card card">
+                        <div class="service-icon">
+                            <img src="assets/icon_cablecar.png" alt="Cable Car Icon">
+                        </div>
+                        <h3>Travel Insurance</h3>
+                        <p>Comprehensive coverage for peace of mind on every trip.</p>
+                    </div>
+                    <div class="service-card card">
+                        <div class="service-icon">
+                            <img src="assets/icon_explorer.png" alt="Explorer Icon">
+                        </div>
+                        <h3>Local Guides</h3>
+                        <p>Authentic experiences led by expert local guides.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Destinations Section -->
+        <section id="destinations" class="section bg-light-beige">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle script-accent">Explore</span>
+                    <h2 class="section-title">Popular Destinations</h2>
+                </div>
+                <div class="destinations-grid">
+                    <div class="card destination-card">
+                        <div class="card-image-placeholder"
+                            style="background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1613395877344-13d4c2ce5d4d?auto=format&fit=crop&q=80&w=800');">
+                            <span class="card-price-tag">From $1,299</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Santorini, Greece</h3>
+                            <p>Experience the stunning sunsets and white-washed architecture of this Cycladic gem.</p>
+                            <a href="#" class="btn btn-text">View Package &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="card destination-card">
+                        <div class="card-image-placeholder"
+                            style="background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=800');">
+                            <span class="card-price-tag">From $1,899</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Kyoto, Japan</h3>
+                            <p>Discover ancient temples, bamboo forests, and beautiful cherry blossoms.</p>
+                            <a href="#" class="btn btn-text">View Package &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="card destination-card">
+                        <div class="card-image-placeholder"
+                            style="background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=800');">
+                            <span class="card-price-tag">From $2,100</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Machu Picchu, Peru</h3>
+                            <p>Trek through the Andes to the lost city of the Incas. A bucket-list adventure.</p>
+                            <a href="#" class="btn btn-text">View Package &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="section blog-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-subtitle script-accent">Travel Journal</span>
+                    <h2 class="section-title">Inspiration for Your Trip</h2>
+                </div>
+                <div class="blog-grid">
+                    <article class="blog-card">
+                        <div class="blog-image-placeholder"
+                            style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;">
+                        </div>
+                        <div class="blog-meta">Travel Tips • 5 min read</div>
+                        <h3>10 Packing Essentials for Europe</h3>
+                        <p>Don't leave home without these key items for your European summer adventure.</p>
+                        <a href="#" class="btn btn-text">Read More &rarr;</a>
+                    </article>
+                    <article class="blog-card">
+                        <div class="blog-image-placeholder"
+                            style="background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;">
+                        </div>
+                        <div class="blog-meta">Guides • 7 min read</div>
+                        <h3>The Ultimate Foodie Guide to Italy</h3>
+                        <p>From pasta to gelato, here's where to find the best culinary experiences.</p>
+                        <a href="#" class="btn btn-text">Read More &rarr;</a>
+                    </article>
+                    <article class="blog-card">
+                        <div class="blog-image-placeholder"
+                            style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;">
+                        </div>
+                        <div class="blog-meta">Inspiration • 4 min read</div>
+                        <h3>Hidden Gems of Southeast Asia</h3>
+                        <p>Escape the crowds and discover these untouched paradises.</p>
+                        <a href="#" class="btn btn-text">Read More &rarr;</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo footer-logo">Earnest<span class="logo-accent">Tours</span></a>
+                <p>Making your dream vacations a reality since 2010.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Subscribe for travel tips and exclusive offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 Earnest Tours. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

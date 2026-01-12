@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Destinations | Earnest Tours</title>
+    <meta name="description"
+        content="Explore top destinations including Egypt, Montenegro, Spain, and more with Earnest Tours.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="destinations.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">Earnest<span class="logo-accent">Tours</span></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="destinations.html" class="nav-link"
+                            style="color: var(--color-primary-accent);">Destinations</a></li>
+                    <li><a href="packages.html" class="nav-link">Packages</a></li>
+                    <li><a href="services.html" class="nav-link">Services</a></li>
+                    <li><a href="index.html#blog" class="nav-link">Blog</a></li>
+                    <li><a href="index.html#contact" class="btn btn-primary">Book Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Search Section -->
+        <section class="hero-search-section">
+            <div class="container">
+                <span class="script-accent" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;">Start your
+                    journey</span>
+                <h1>Find Your Perfect Getaway</h1>
+
+                <!-- Floating Search Bar -->
+                <div class="discovery-search-bar">
+                    <div class="search-field">
+                        <label for="search-where">Where</label>
+                        <input type="text" id="search-where" placeholder="Search destinations">
+                    </div>
+                    <div class="search-field">
+                        <label for="search-when">When</label>
+                        <input type="date" id="search-when">
+                    </div>
+                    <div class="search-field">
+                        <label for="search-who">Who</label>
+                        <select id="search-who">
+                            <option value="1">1 Traveler</option>
+                            <option value="2" selected>2 Travelers</option>
+                            <option value="3">3 Travelers</option>
+                            <option value="4+">4+ Travelers</option>
+                        </select>
+                    </div>
+                    <button type="button" class="search-submit-btn" aria-label="Search">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Area: Infinite Grid -->
+        <section class="container main-grid-container">
+
+            <div id="destinations-grid" class="destinations-grid">
+                <!-- All Cards List (Hidden by default via JS and revealed on scroll) -->
+
+                <!-- 1. Spain -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&q=80&w=1000"
+                            alt="Spain">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Spain</h3>
+                            <div class="card-rating">★ 4.98</div>
+                        </div>
+                        <p class="card-location">Europe</p>
+                        <div class="card-info"></div> <!-- Spacer -->
+                        <div class="card-price-row">
+                            <span class="card-price">$1,300</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Spain produces over 40% of the world's olive oil.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Portugal -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd9b?auto=format&fit=crop&q=80&w=1000"
+                            alt="Portugal">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Portugal</h3>
+                            <div class="card-rating">★ 4.95</div>
+                        </div>
+                        <p class="card-location">Europe</p>
+                        <div class="card-info"></div>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,150</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Portugal is the world's largest cork producer.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Italy -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&q=80&w=1000"
+                            alt="Italy">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Italy</h3>
+                            <div class="card-rating">★ 5.0</div>
+                        </div>
+                        <p class="card-location">Europe</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,400</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Around €3,000 are thrown into the Trevi Fountain daily.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Egypt -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1539650116455-29cb5587e974?auto=format&fit=crop&q=80&w=1000"
+                            alt="Egypt">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Egypt</h3>
+                            <div class="card-rating">★ 4.88</div>
+                        </div>
+                        <p class="card-location">North Africa</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,100</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Ancient Egyptians invented toothpaste.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Japan -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=1000"
+                            alt="Japan">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Japan</h3>
+                            <div class="card-rating">★ 5.0</div>
+                        </div>
+                        <p class="card-location">East Asia</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$2,100</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Japan has more than 5 million vending machines.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. USA -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1474128045680-e6f31e3053af?auto=format&fit=crop&q=80&w=1000"
+                            alt="USA">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>USA</h3>
+                            <div class="card-rating">★ 4.92</div>
+                        </div>
+                        <p class="card-location">North America</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$2,000</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>The Grand Canyon creates its own weather.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Montenegro -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1565627704770-bd6f5cc7675f?auto=format&fit=crop&q=80&w=1000"
+                            alt="Montenegro">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Montenegro</h3>
+                            <div class="card-rating">★ 4.75</div>
+                        </div>
+                        <p class="card-location">Balkans</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$950</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Montenegro implies "Black Mountain".</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Bali -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=1000"
+                            alt="Bali">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Bali</h3>
+                            <div class="card-rating">★ 4.96</div>
+                        </div>
+                        <p class="card-location">Indonesia</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,000</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Everyone here is seemingly named Wayan, Made, Nyoman or Ketut.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. France -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1549144511-f099e773c447?auto=format&fit=crop&q=80&w=1000"
+                            alt="France">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>France</h3>
+                            <div class="card-rating">★ 4.90</div>
+                        </div>
+                        <p class="card-location">Europe</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,250</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>France is the most visited country in the world.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Morocco -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&q=80&w=1000"
+                            alt="Morocco">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Morocco</h3>
+                            <div class="card-rating">★ 4.85</div>
+                        </div>
+                        <p class="card-location">North Africa</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,050</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>It features the oldest university in the world, Al Quaraouiyine.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. Australia -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1523482580672-01e6f2eb60b3?auto=format&fit=crop&q=80&w=1000"
+                            alt="Australia">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Australia</h3>
+                            <div class="card-rating">★ 4.95</div>
+                        </div>
+                        <p class="card-location">Oceania</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$2,200</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Australia is wider than the moon.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12. Thailand -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=1000"
+                            alt="Thailand">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Thailand</h3>
+                            <div class="card-rating">★ 4.80</div>
+                        </div>
+                        <p class="card-location">Southeast Asia</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$950</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>It's the only Southeast Asian country never colonized by Europe.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 13. Albania -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1601831828552-30a21a8d05e2?auto=format&fit=crop&q=80&w=1000"
+                            alt="Albania">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Albania</h3>
+                            <div class="card-rating">★ 4.65</div>
+                        </div>
+                        <p class="card-location">Balkans</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$850</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>In Albania, nodding means 'no' and shaking head means 'yes'.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 14. Greece -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=1000"
+                            alt="Greece">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Greece</h3>
+                            <div class="card-rating">★ 4.99</div>
+                        </div>
+                        <p class="card-location">Mediterranean</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,450</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Greece enjoys more than 250 days of sunshine a year.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 15. Brazil -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&q=80&w=1000"
+                            alt="Brazil">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Brazil</h3>
+                            <div class="card-rating">★ 4.85</div>
+                        </div>
+                        <p class="card-location">South America</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,550</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Brazil covers almost 50% of the South American continent.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 16. South Africa -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=1000"
+                            alt="South Africa">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>South Africa</h3>
+                            <div class="card-rating">★ 4.88</div>
+                        </div>
+                        <p class="card-location">Africa</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,600</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Table Mountain contains more plant species than the entire UK.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 17. Canada -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&q=80&w=1000"
+                            alt="Canada">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Canada</h3>
+                            <div class="card-rating">★ 4.95</div>
+                        </div>
+                        <p class="card-location">North America</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,850</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Canada has the longest coastline in the world.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 18. Vietnam -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80&w=1000"
+                            alt="Vietnam">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Vietnam</h3>
+                            <div class="card-rating">★ 4.82</div>
+                        </div>
+                        <p class="card-location">Southeast Asia</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$900</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Vietnam is the world's largest exporter of cashew nuts.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 19. Turkey -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&q=80&w=1000"
+                            alt="Turkey">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Turkey</h3>
+                            <div class="card-rating">★ 4.78</div>
+                        </div>
+                        <p class="card-location">Eurasia</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,200</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Santa Claus (St. Nicholas) was actually born in Turkey.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 20. Scotland -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1578326280424-da8ac7a435a4?auto=format&fit=crop&q=80&w=1000"
+                            alt="Scotland">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Scotland</h3>
+                            <div class="card-rating">★ 4.90</div>
+                        </div>
+                        <p class="card-location">UK</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,400</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Scotland has approximately 790 islands.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 21. Peru -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1000"
+                            alt="Peru">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Peru</h3>
+                            <div class="card-rating">★ 4.89</div>
+                        </div>
+                        <p class="card-location">South America</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,650</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>The potato is originally from Peru.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 22. Iceland -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1548232979-6c557ee14752?auto=format&fit=crop&q=80&w=1000"
+                            alt="Iceland">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Iceland</h3>
+                            <div class="card-rating">★ 4.97</div>
+                        </div>
+                        <p class="card-location">Europe</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,750</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>There are no mosquitos in Iceland.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 23. Kenya -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?auto=format&fit=crop&q=80&w=1000"
+                            alt="Kenya">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Kenya</h3>
+                            <div class="card-rating">★ 4.88</div>
+                        </div>
+                        <p class="card-location">East Africa</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,800</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Kenya is the safari capital of the world.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 24. Netherlands -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&q=80&w=1000"
+                            alt="Netherlands">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Netherlands</h3>
+                            <div class="card-rating">★ 4.90</div>
+                        </div>
+                        <p class="card-location">Europe</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,300</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>Dutch men are the tallest in the world.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 25. Costa Rica -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&q=80&w=1000"
+                            alt="Costa Rica">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Costa Rica</h3>
+                            <div class="card-rating">★ 4.92</div>
+                        </div>
+                        <p class="card-location">Central America</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,350</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>It has no standing army since 1949.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 26. Switzerland -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1527668752968-14a70a6a545a?auto=format&fit=crop&q=80&w=1000"
+                            alt="Switzerland">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Switzerland</h3>
+                            <div class="card-rating">★ 4.95</div>
+                        </div>
+                        <p class="card-location">Europe</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$2,300</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>It has 7000 lakes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 27. Ireland -->
+                <div class="discovery-card hidden">
+                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1541359927-236d38e925c3?auto=format&fit=crop&q=80&w=1000"
+                            alt="Ireland">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-title-row">
+                            <h3>Ireland</h3>
+                            <div class="card-rating">★ 4.88</div>
+                        </div>
+                        <p class="card-location">Europe</p>
+                        <div class="card-price-row">
+                            <span class="card-price">$1,350</span>
+                            <span class="card-night">total</span>
+                        </div>
+                        <div class="card-fun-fact">
+                            <h4>Did you know?</h4>
+                            <p>The Titanic was built here.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loader / Scroll Trigger -->
+            <div id="loader" class="loading-trigger">
+                <div class="spinner"></div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo footer-logo">Earnest<span class="logo-accent">Tours</span></a>
+                <p>Making your dream vacations a reality since 2010.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Subscribe for travel tips and exclusive offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address">
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 Earnest Tours. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="destinations.js"></script>
+</body>
+
+</html>

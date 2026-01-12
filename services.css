@@ -1,0 +1,155 @@
+/* Services Page Styles */
+
+/* Header Override for active state handled in services.html inline usually or reuse generic active class if set */
+.nav-link.active {
+    color: var(--color-primary-accent);
+    font-weight: 700;
+}
+
+/* Page Header reuse from packages.css (assuming global or copy) */
+.page-header {
+    background-color: var(--color-secondary-navy);
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+    color: white;
+    margin-bottom: var(--spacing-lg);
+}
+
+.page-title {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: var(--spacing-xs);
+}
+
+.page-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Services Large Grid */
+.services-full-section {
+    padding-top: 0;
+}
+
+.services-grid-large {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.service-detail-card {
+    background: white;
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: var(--transition-standard);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.service-detail-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(230, 126, 80, 0.2);
+}
+
+.service-icon-large {
+    width: 100px;
+    height: 100px;
+    background: var(--color-bg-light-beige);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+    transition: var(--transition-standard);
+}
+
+.service-detail-card:hover .service-icon-large {
+    background: var(--color-primary-accent);
+    color: white;
+}
+
+.service-icon-large img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+}
+
+.generic-icon {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.service-content h3 {
+    font-size: 1.5rem;
+    color: var(--color-secondary-navy);
+    margin-bottom: var(--spacing-sm);
+}
+
+.service-content p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+    font-size: 1rem;
+}
+
+.service-highlights {
+    text-align: left;
+    width: 100%;
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--spacing-md);
+    margin-top: auto;
+}
+
+.service-highlights li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    display: flex;
+    align-items: center;
+}
+
+.service-highlights li::before {
+    content: "•";
+    color: var(--color-primary-accent);
+    font-size: 1.5rem;
+    line-height: 0.5;
+    margin-right: 10px;
+}
+
+/* CTA Section */
+.cta-section {
+    background: var(--color-bg-light-beige);
+    padding: var(--spacing-xl) 0;
+    margin-top: var(--spacing-lg);
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-lg {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .services-grid-large {
+        grid-template-columns: 1fr;
+    }
+}
