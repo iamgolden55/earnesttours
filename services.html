@@ -203,8 +203,9 @@
             <div class="footer-newsletter">
                 <h4>Newsletter</h4>
                 <p>Subscribe for travel tips and exclusive offers.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your email address">
+                <form class="newsletter-form"
+                    onsubmit="event.preventDefault(); window.location.href='mailto:info@earnesttours.com?subject=Newsletter Subscription&body=Please subscribe me to the newsletter: ' + this.querySelector('input[type=email]').value;">
+                    <input type="email" placeholder="Your email address" required>
                     <button type="submit" class="btn btn-primary">Subscribe</button>
                 </form>
             </div>

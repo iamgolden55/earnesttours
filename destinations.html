@@ -1,790 +1,736 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discover Destinations | Earnest Tours</title>
-    <meta name="description"
-        content="Explore top destinations including Egypt, Montenegro, Spain, and more with Earnest Tours.">
-
-    <!-- Google Fonts -->
+    <title>Earnest Tours | Global Motion System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Yellowtail&amp;display=swap"
         rel="stylesheet">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="destinations.css">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .font-script {
+            font-family: 'Yellowtail', cursive;
+        }
+
+        /* Hide Scrollbar */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Masonry Grid */
+        .masonry-grid {
+            column-count: 1;
+        }
+
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+
+        .break-inside-avoid {
+            break-inside: avoid;
+        }
+
+        /* --- GLOBAL MOTION SYSTEM --- */
+
+        /* 1. Page Transition (Blur Effect) */
+        .page-container {
+            transition: opacity 400ms ease-in-out, filter 400ms ease-in-out;
+        }
+
+        .page-exit {
+            opacity: 0;
+            filter: blur(5px);
+        }
+
+        .page-enter {
+            animation: unblur 400ms ease-out forwards;
+        }
+
+        @keyframes unblur {
+            0% {
+                opacity: 0;
+                filter: blur(5px);
+            }
+
+            100% {
+                opacity: 1;
+                filter: blur(0px);
+            }
+        }
+
+        /* 2. Elevation on Lift (Hover) */
+        .lift-card {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .lift-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        /* 3. Staggered Reveals */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .stagger-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 4. Loading State Animation */
+        .btn-content {
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-spinner {
+            transition: opacity 0.2s ease;
+        }
+
+        /* 5. Custom Focus Rings */
+        *:focus-visible {
+            outline: 2px solid #E67E50;
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        /* 6. Parallax Class */
+        .parallax-img {
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+
+        /* Reduced Motion Preferences */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            ::before,
+            ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .lift-card:hover {
+                transform: none;
+            }
+
+            .parallax-img {
+                transform: none !important;
+            }
+        }
+    </style>
 </head>
 
-<body>
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="index.html" class="logo">Earnest<span class="logo-accent">Tours</span></a>
-            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <nav class="main-nav">
-                <ul class="nav-list">
-                    <li><a href="destinations.html" class="nav-link"
-                            style="color: var(--color-primary-accent);">Destinations</a></li>
-                    <li><a href="packages.html" class="nav-link">Packages</a></li>
-                    <li><a href="services.html" class="nav-link">Services</a></li>
-                    <li><a href="index.html#blog" class="nav-link">Blog</a></li>
-                    <li><a href="index.html#contact" class="btn btn-primary">Book Now</a></li>
-                </ul>
-            </nav>
+<body class="text-slate-700 antialiased selection:bg-[#E67E50] selection:text-white">
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-xl border-b border-slate-100 transition-all duration-300"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div
+                    class="w-8 h-8 rounded-lg bg-[#E67E50] flex items-center justify-center text-white rotate-3 group-hover:rotate-6 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+                    <span class="iconify" data-icon="lucide:compass" data-width="20"></span>
+                </div>
+                <span
+                    class="text-xl font-semibold tracking-tighter text-slate-900 group-hover:text-[#E67E50] transition-colors duration-300">earnesttours</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <button onclick="route(event, 'destinations')"
+                    class="nav-link text-sm font-medium text-[#E67E50] hover:text-[#E67E50] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-[#E67E50] after:scale-x-100 after:origin-left after:transition-transform after:duration-300"
+                    data-target="destinations">Destinations</button>
+                <button onclick="route(event, 'packages')"
+                    class="nav-link text-sm font-medium text-slate-600 hover:text-[#E67E50] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-[#E67E50] after:scale-x-0 after:origin-left after:transition-transform after:duration-300"
+                    data-target="packages">Packages</button>
+                <button onclick="route(event, 'journal')"
+                    class="nav-link text-sm font-medium text-slate-600 hover:text-[#E67E50] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-[#E67E50] after:scale-x-0 after:origin-left after:transition-transform after:duration-300"
+                    data-target="journal">Journal</button>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="route(event, 'booking')"
+                    class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-[#0F172A] text-white text-xs font-medium rounded-full hover:bg-slate-800 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group">
+                    <span>Book Trip</span>
+                    <span class="iconify group-hover:translate-x-1 transition-transform" data-icon="lucide:arrow-right"
+                        data-width="14"></span>
+                </button>
+                <!-- Mobile Menu Toggle (Simplified for visual) -->
+                <button
+                    class="md:hidden p-2 text-slate-600 hover:bg-slate-50 rounded-full transition-colors mobile-menu-toggle">
+                    <span class="iconify" data-icon="lucide:menu" data-width="24"></span>
+                </button>
+            </div>
         </div>
-    </header>
 
-    <main>
-        <!-- Hero Search Section -->
-        <section class="hero-search-section">
-            <div class="container">
-                <span class="script-accent" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;">Start your
-                    journey</span>
-                <h1>Find Your Perfect Getaway</h1>
-
-                <!-- Floating Search Bar -->
-                <div class="discovery-search-bar">
-                    <div class="search-field">
-                        <label for="search-where">Where</label>
-                        <input type="text" id="search-where" placeholder="Search destinations">
-                    </div>
-                    <div class="search-field">
-                        <label for="search-when">When</label>
-                        <input type="date" id="search-when">
-                    </div>
-                    <div class="search-field">
-                        <label for="search-who">Who</label>
-                        <select id="search-who">
-                            <option value="1">1 Traveler</option>
-                            <option value="2" selected>2 Travelers</option>
-                            <option value="3">3 Travelers</option>
-                            <option value="4+">4+ Travelers</option>
-                        </select>
-                    </div>
-                    <button type="button" class="search-submit-btn" aria-label="Search">
-                        <svg viewBox="0 0 24 24">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
+        <!-- Mobile Navigation Menu -->
+        <nav class="main-nav md:hidden">
+            <ul class="nav-list flex flex-col gap-4 p-4">
+                <li>
+                    <button onclick="route(event, 'destinations')"
+                        class="nav-link text-lg font-medium text-slate-700 hover:text-[#E67E50] w-full text-left">Destinations</button>
+                </li>
+                <li>
+                    <button onclick="route(event, 'packages')"
+                        class="nav-link text-lg font-medium text-slate-700 hover:text-[#E67E50] w-full text-left">Packages</button>
+                </li>
+                <li>
+                    <button onclick="route(event, 'journal')"
+                        class="nav-link text-lg font-medium text-slate-700 hover:text-[#E67E50] w-full text-left">Journal</button>
+                </li>
+                <li class="pt-4 border-t border-slate-100">
+                    <button onclick="route(event, 'booking')"
+                        class="flex items-center gap-2 text-lg font-medium text-[#E67E50] w-full text-left">
+                        <span>Book Trip</span>
+                        <span class="iconify" data-icon="lucide:arrow-right" data-width="16"></span>
                     </button>
+                </li>
+            </ul>
+        </nav>
+    </nav>
+
+    <!-- Main Content Container for SPA -->
+    <main id="app-container" class="relative min-h-screen">
+
+        <!-- PAGE: DESTINATIONS (Home) -->
+        <section id="destinations" class="page-view absolute w-full top-0 left-0">
+            <!-- Header -->
+            <header class="pt-16 pb-10 px-6 max-w-7xl mx-auto stagger-group">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                    <div class="stagger-item">
+                        <span class="font-script text-[#E67E50] text-3xl mb-2 block rotate-[-1deg]">Wanderlust
+                            awaits</span>
+                        <h1 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+                            Explore our <br><span class="text-slate-400 font-light">curated destinations.</span>
+                        </h1>
+                    </div>
+
+                    <!-- Filter Pills -->
+                    <div class="flex gap-2 overflow-x-auto hide-scrollbar pb-1 max-w-full stagger-item"
+                        style="transition-delay: 100ms;">
+                        <button
+                            class="px-5 py-2.5 rounded-full bg-[#0F172A] text-white text-sm font-medium whitespace-nowrap shadow-lg shadow-slate-200 hover:scale-105 transition-transform duration-300">All
+                            Places</button>
+                        <button
+                            class="px-5 py-2.5 rounded-full bg-white border border-slate-200 text-slate-600 text-sm font-medium whitespace-nowrap hover:border-[#E67E50] hover:text-[#E67E50] transition-all hover:-translate-y-0.5">Europe</button>
+                        <button
+                            class="px-5 py-2.5 rounded-full bg-white border border-slate-200 text-slate-600 text-sm font-medium whitespace-nowrap hover:border-[#E67E50] hover:text-[#E67E50] transition-all hover:-translate-y-0.5">Asia</button>
+                        <button
+                            class="px-5 py-2.5 rounded-full bg-white border border-slate-200 text-slate-600 text-sm font-medium whitespace-nowrap hover:border-[#E67E50] hover:text-[#E67E50] transition-all hover:-translate-y-0.5">Americas</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Grid -->
+            <div class="px-6 pb-24 max-w-7xl mx-auto">
+                <div class="masonry-grid gap-8 space-y-8 stagger-group">
+
+                    <!-- Kyoto -->
+                    <article
+                        class="lift-card break-inside-avoid bg-white rounded-3xl overflow-hidden border border-slate-200 group mb-8 stagger-item">
+                        <div class="relative overflow-hidden aspect-[3/4]">
+                            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+                                class="parallax-img w-full h-[120%] object-cover -mt-[10%] group-hover:scale-105 transition-transform duration-700 ease-out">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60">
+                            </div>
+                            <div class="absolute top-4 right-4 z-10">
+                                <span
+                                    class="px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-bold text-[#10B981] shadow-sm flex items-center gap-1">
+                                    <span class="iconify" data-icon="lucide:leaf" data-width="12"></span> Nature
+                                </span>
+                            </div>
+                            <div class="absolute bottom-4 left-4 text-white z-10">
+                                <div class="flex items-center gap-1 text-xs font-medium mb-1 opacity-90">
+                                    <span class="iconify" data-icon="lucide:map-pin" data-width="14"></span> Japan
+                                </div>
+                                <h3 class="text-2xl font-bold tracking-tight">Kyoto</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-end mb-4 border-b border-slate-100 pb-4">
+                                <p class="text-slate-500 text-sm leading-relaxed line-clamp-2">Ancient temples and
+                                    vibrant seasons in the cultural heart of Japan.</p>
+                                <div class="text-right whitespace-nowrap ml-4">
+                                    <span class="block text-xs text-slate-400">From</span>
+                                    <span class="text-lg font-bold text-slate-900">$1,850</span>
+                                </div>
+                            </div>
+                            <button onclick="handlePrimaryAction(this)"
+                                class="w-full py-3 rounded-xl bg-slate-900 text-white font-medium hover:bg-[#E67E50] transition-colors flex justify-center items-center shadow-lg shadow-slate-200/50 relative overflow-hidden group/btn">
+                                <span class="btn-content flex items-center gap-2">View Itinerary <span
+                                        class="iconify group-hover/btn:translate-x-1 transition-transform"
+                                        data-icon="lucide:arrow-right" data-width="16"></span></span>
+                                <span class="btn-spinner absolute opacity-0 scale-75"><span class="iconify animate-spin"
+                                        data-icon="lucide:loader-2" data-width="24"></span></span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Santorini -->
+                    <article
+                        class="lift-card break-inside-avoid bg-white rounded-3xl overflow-hidden border border-slate-200 group mb-8 stagger-item">
+                        <div class="relative overflow-hidden aspect-[4/3]">
+                            <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+                                class="parallax-img w-full h-[120%] object-cover -mt-[10%] group-hover:scale-105 transition-transform duration-700 ease-out">
+                            <div class="absolute top-4 right-4 z-10">
+                                <span
+                                    class="px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-bold text-[#0EA5E9] shadow-sm flex items-center gap-1">
+                                    <span class="iconify" data-icon="lucide:waves" data-width="12"></span> Coastal
+                                </span>
+                            </div>
+                            <div
+                                class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent z-10">
+                                <h3 class="text-2xl font-bold tracking-tight text-white">Santorini</h3>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-slate-500 text-sm mb-4">White-washed buildings, blue domes, and sunsets that
+                                will steal your heart.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-lg font-bold text-slate-900">$2,100</span>
+                                <button onclick="handlePrimaryAction(this)"
+                                    class="px-6 py-2.5 rounded-full bg-white border-2 border-slate-100 text-slate-900 text-sm font-semibold hover:border-[#E67E50] hover:text-[#E67E50] transition-all flex items-center justify-center min-w-[100px] relative">
+                                    <span class="btn-content">Details</span>
+                                    <span class="btn-spinner absolute opacity-0"><span
+                                            class="iconify animate-spin text-[#E67E50]" data-icon="lucide:loader-2"
+                                            data-width="18"></span></span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Marrakech -->
+                    <article
+                        class="lift-card break-inside-avoid bg-white rounded-3xl overflow-hidden border border-slate-200 group mb-8 stagger-item">
+                        <div class="relative overflow-hidden aspect-[3/5]">
+                            <img src="https://images.unsplash.com/photo-1539020140153-e479b8c22e70?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+                                class="parallax-img w-full h-[120%] object-cover -mt-[10%] group-hover:scale-105 transition-transform duration-700 ease-out">
+                            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/70"></div>
+                            <div class="absolute top-4 right-4 z-10">
+                                <span
+                                    class="px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-bold text-[#F59E0B] shadow-sm flex items-center gap-1">
+                                    <span class="iconify" data-icon="lucide:sun" data-width="12"></span> Desert
+                                </span>
+                            </div>
+                            <div class="absolute bottom-6 left-6 text-white z-10">
+                                <h3 class="text-3xl font-bold tracking-tight mb-2">Marrakech</h3>
+                                <p class="text-xs font-light text-white/80">Lost in the souks and spices of the Red
+                                    City.</p>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <button onclick="handlePrimaryAction(this)"
+                                class="w-full py-3.5 rounded-xl bg-[#E67E50] text-white font-medium hover:bg-[#d66e40] shadow-lg shadow-orange-500/20 transition-all flex justify-center items-center relative overflow-hidden">
+                                <span class="btn-content">Book Adventure ($1,200)</span>
+                                <span class="btn-spinner absolute opacity-0"><span class="iconify animate-spin"
+                                        data-icon="lucide:loader-2" data-width="24"></span></span>
+                            </button>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- Main Content Area: Infinite Grid -->
-        <section class="container main-grid-container">
-
-            <div id="destinations-grid" class="destinations-grid">
-                <!-- All Cards List (Hidden by default via JS and revealed on scroll) -->
-
-                <!-- 1. Spain -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&q=80&w=1000"
-                            alt="Spain">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Spain</h3>
-                            <div class="card-rating">★ 4.98</div>
-                        </div>
-                        <p class="card-location">Europe</p>
-                        <div class="card-info"></div> <!-- Spacer -->
-                        <div class="card-price-row">
-                            <span class="card-price">$1,300</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Spain produces over 40% of the world's olive oil.</p>
-                        </div>
-                    </div>
+        <!-- PAGE: PACKAGES (List View) -->
+        <section id="packages" class="page-view hidden absolute w-full top-0 left-0">
+            <div class="pt-16 px-6 max-w-4xl mx-auto stagger-group">
+                <div class="mb-10 stagger-item">
+                    <span class="font-script text-[#E67E50] text-3xl mb-2 block">All Inclusive</span>
+                    <h1 class="text-4xl font-bold text-slate-900 tracking-tight">Available Packages</h1>
                 </div>
 
-                <!-- 2. Portugal -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd9b?auto=format&fit=crop&q=80&w=1000"
-                            alt="Portugal">
+                <div class="space-y-4">
+                    <!-- Package 1 -->
+                    <div
+                        class="lift-card bg-white p-4 rounded-2xl border border-slate-100 flex gap-4 items-center group stagger-item">
+                        <div class="w-24 h-24 rounded-xl overflow-hidden shrink-0">
+                            <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?q=80&amp;w=400&amp;auto=format&amp;fit=crop"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#E67E50] transition-colors">
+                                Tropical Paradise Bundle</h3>
+                            <p class="text-sm text-slate-500">Maldives &amp; Seychelles - 14 Days</p>
+                        </div>
+                        <div class="hidden sm:block text-right px-4">
+                            <span class="block text-xl font-bold text-slate-900">$4,200</span>
+                            <span
+                                class="text-xs text-[#10B981] bg-[#10B981]/10 px-2 py-0.5 rounded-full">Available</span>
+                        </div>
+                        <button
+                            class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-[#E67E50] group-hover:text-[#E67E50] transition-all">
+                            <span class="iconify" data-icon="lucide:arrow-right" data-width="20"></span>
+                        </button>
                     </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Portugal</h3>
-                            <div class="card-rating">★ 4.95</div>
-                        </div>
-                        <p class="card-location">Europe</p>
-                        <div class="card-info"></div>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,150</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Portugal is the world's largest cork producer.</p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- 3. Italy -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&q=80&w=1000"
-                            alt="Italy">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Italy</h3>
-                            <div class="card-rating">★ 5.0</div>
-                        </div>
-                        <p class="card-location">Europe</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,400</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Around €3,000 are thrown into the Trevi Fountain daily.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. Egypt -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1539650116455-29cb5587e974?auto=format&fit=crop&q=80&w=1000"
-                            alt="Egypt">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Egypt</h3>
-                            <div class="card-rating">★ 4.88</div>
-                        </div>
-                        <p class="card-location">North Africa</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,100</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Ancient Egyptians invented toothpaste.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. Japan -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=1000"
-                            alt="Japan">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Japan</h3>
-                            <div class="card-rating">★ 5.0</div>
-                        </div>
-                        <p class="card-location">East Asia</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$2,100</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Japan has more than 5 million vending machines.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 6. USA -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1474128045680-e6f31e3053af?auto=format&fit=crop&q=80&w=1000"
-                            alt="USA">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>USA</h3>
-                            <div class="card-rating">★ 4.92</div>
-                        </div>
-                        <p class="card-location">North America</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$2,000</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>The Grand Canyon creates its own weather.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 7. Montenegro -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1565627704770-bd6f5cc7675f?auto=format&fit=crop&q=80&w=1000"
-                            alt="Montenegro">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Montenegro</h3>
-                            <div class="card-rating">★ 4.75</div>
-                        </div>
-                        <p class="card-location">Balkans</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$950</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Montenegro implies "Black Mountain".</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 8. Bali -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&q=80&w=1000"
-                            alt="Bali">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Bali</h3>
-                            <div class="card-rating">★ 4.96</div>
-                        </div>
-                        <p class="card-location">Indonesia</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,000</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Everyone here is seemingly named Wayan, Made, Nyoman or Ketut.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 9. France -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1549144511-f099e773c447?auto=format&fit=crop&q=80&w=1000"
-                            alt="France">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>France</h3>
-                            <div class="card-rating">★ 4.90</div>
-                        </div>
-                        <p class="card-location">Europe</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,250</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>France is the most visited country in the world.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 10. Morocco -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1539020140153-e479b8c22e70?auto=format&fit=crop&q=80&w=1000"
-                            alt="Morocco">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Morocco</h3>
-                            <div class="card-rating">★ 4.85</div>
-                        </div>
-                        <p class="card-location">North Africa</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,050</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>It features the oldest university in the world, Al Quaraouiyine.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 11. Australia -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1523482580672-01e6f2eb60b3?auto=format&fit=crop&q=80&w=1000"
-                            alt="Australia">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Australia</h3>
-                            <div class="card-rating">★ 4.95</div>
-                        </div>
-                        <p class="card-location">Oceania</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$2,200</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Australia is wider than the moon.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 12. Thailand -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&q=80&w=1000"
-                            alt="Thailand">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Thailand</h3>
-                            <div class="card-rating">★ 4.80</div>
-                        </div>
-                        <p class="card-location">Southeast Asia</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$950</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>It's the only Southeast Asian country never colonized by Europe.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 13. Albania -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1601831828552-30a21a8d05e2?auto=format&fit=crop&q=80&w=1000"
-                            alt="Albania">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Albania</h3>
-                            <div class="card-rating">★ 4.65</div>
-                        </div>
-                        <p class="card-location">Balkans</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$850</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>In Albania, nodding means 'no' and shaking head means 'yes'.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 14. Greece -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=1000"
-                            alt="Greece">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Greece</h3>
-                            <div class="card-rating">★ 4.99</div>
-                        </div>
-                        <p class="card-location">Mediterranean</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,450</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Greece enjoys more than 250 days of sunshine a year.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 15. Brazil -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&q=80&w=1000"
-                            alt="Brazil">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Brazil</h3>
-                            <div class="card-rating">★ 4.85</div>
-                        </div>
-                        <p class="card-location">South America</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,550</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Brazil covers almost 50% of the South American continent.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 16. South Africa -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=1000"
-                            alt="South Africa">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>South Africa</h3>
-                            <div class="card-rating">★ 4.88</div>
-                        </div>
-                        <p class="card-location">Africa</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,600</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Table Mountain contains more plant species than the entire UK.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 17. Canada -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&q=80&w=1000"
-                            alt="Canada">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Canada</h3>
-                            <div class="card-rating">★ 4.95</div>
-                        </div>
-                        <p class="card-location">North America</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,850</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Canada has the longest coastline in the world.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 18. Vietnam -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80&w=1000"
-                            alt="Vietnam">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Vietnam</h3>
-                            <div class="card-rating">★ 4.82</div>
-                        </div>
-                        <p class="card-location">Southeast Asia</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$900</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Vietnam is the world's largest exporter of cashew nuts.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 19. Turkey -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&q=80&w=1000"
-                            alt="Turkey">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Turkey</h3>
-                            <div class="card-rating">★ 4.78</div>
-                        </div>
-                        <p class="card-location">Eurasia</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,200</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Santa Claus (St. Nicholas) was actually born in Turkey.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 20. Scotland -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1578326280424-da8ac7a435a4?auto=format&fit=crop&q=80&w=1000"
-                            alt="Scotland">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Scotland</h3>
-                            <div class="card-rating">★ 4.90</div>
-                        </div>
-                        <p class="card-location">UK</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,400</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Scotland has approximately 790 islands.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 21. Peru -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=1000"
-                            alt="Peru">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Peru</h3>
-                            <div class="card-rating">★ 4.89</div>
-                        </div>
-                        <p class="card-location">South America</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,650</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>The potato is originally from Peru.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 22. Iceland -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1548232979-6c557ee14752?auto=format&fit=crop&q=80&w=1000"
-                            alt="Iceland">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Iceland</h3>
-                            <div class="card-rating">★ 4.97</div>
-                        </div>
-                        <p class="card-location">Europe</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,750</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>There are no mosquitos in Iceland.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 23. Kenya -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?auto=format&fit=crop&q=80&w=1000"
-                            alt="Kenya">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Kenya</h3>
-                            <div class="card-rating">★ 4.88</div>
-                        </div>
-                        <p class="card-location">East Africa</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,800</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Kenya is the safari capital of the world.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 24. Netherlands -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&q=80&w=1000"
-                            alt="Netherlands">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Netherlands</h3>
-                            <div class="card-rating">★ 4.90</div>
-                        </div>
-                        <p class="card-location">Europe</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,300</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>Dutch men are the tallest in the world.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 25. Costa Rica -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&q=80&w=1000"
-                            alt="Costa Rica">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Costa Rica</h3>
-                            <div class="card-rating">★ 4.92</div>
-                        </div>
-                        <p class="card-location">Central America</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,350</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>It has no standing army since 1949.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 26. Switzerland -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1527668752968-14a70a6a545a?auto=format&fit=crop&q=80&w=1000"
-                            alt="Switzerland">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Switzerland</h3>
-                            <div class="card-rating">★ 4.95</div>
-                        </div>
-                        <p class="card-location">Europe</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$2,300</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>It has 7000 lakes.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 27. Ireland -->
-                <div class="discovery-card hidden">
-                    <button class="fact-toggle-btn" title="Fun Fact">?</button>
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1541359927-236d38e925c3?auto=format&fit=crop&q=80&w=1000"
-                            alt="Ireland">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-title-row">
-                            <h3>Ireland</h3>
-                            <div class="card-rating">★ 4.88</div>
-                        </div>
-                        <p class="card-location">Europe</p>
-                        <div class="card-price-row">
-                            <span class="card-price">$1,350</span>
-                            <span class="card-night">total</span>
-                        </div>
-                        <div class="card-fun-fact">
-                            <h4>Did you know?</h4>
-                            <p>The Titanic was built here.</p>
-                        </div>
+                    <!-- Package 2 -->
+                    <div
+                        class="lift-card bg-white p-4 rounded-2xl border border-slate-100 flex gap-4 items-center group stagger-item">
+                        <div class="w-24 h-24 rounded-xl overflow-hidden shrink-0">
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&amp;w=400&amp;auto=format&amp;fit=crop"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-slate-900 group-hover:text-[#E67E50] transition-colors">
+                                Alpine Explorer</h3>
+                            <p class="text-sm text-slate-500">Swiss Alps &amp; Dolomites - 10 Days</p>
+                        </div>
+                        <div class="hidden sm:block text-right px-4">
+                            <span class="block text-xl font-bold text-slate-900">$3,500</span>
+                            <span class="text-xs text-[#E67E50] bg-[#E67E50]/10 px-2 py-0.5 rounded-full">Low
+                                Stock</span>
+                        </div>
+                        <button
+                            class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 group-hover:border-[#E67E50] group-hover:text-[#E67E50] transition-all">
+                            <span class="iconify" data-icon="lucide:arrow-right" data-width="20"></span>
+                        </button>
                     </div>
                 </div>
             </div>
-
-            <!-- Loader / Scroll Trigger -->
-            <div id="loader" class="loading-trigger">
-                <div class="spinner"></div>
-            </div>
-
         </section>
+
+        <!-- PAGE: JOURNAL (Blog) -->
+        <section id="journal" class="page-view hidden absolute w-full top-0 left-0">
+            <div class="pt-16 px-6 max-w-7xl mx-auto stagger-group">
+                <div class="mb-12 text-center stagger-item">
+                    <span class="font-script text-[#E67E50] text-3xl mb-2 block">Travel Diaries</span>
+                    <h1 class="text-4xl font-bold text-slate-900 tracking-tight">Stories from the road.</h1>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Article 1 -->
+                    <div class="group cursor-pointer stagger-item">
+                        <div class="overflow-hidden rounded-2xl mb-4 aspect-[16/9] relative">
+                            <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <span class="text-xs font-bold text-[#E67E50] uppercase tracking-wider">Tips &amp; Tricks</span>
+                        <h3
+                            class="text-2xl font-bold text-slate-900 mt-2 mb-2 group-hover:text-[#E67E50] transition-colors">
+                            How to pack for a month in one carry-on.</h3>
+                        <p class="text-slate-500 leading-relaxed">Minimalism is not just an aesthetic, it's a way to
+                            travel freer and cheaper...</p>
+                    </div>
+                    <!-- Article 2 -->
+                    <div class="group cursor-pointer stagger-item">
+                        <div class="overflow-hidden rounded-2xl mb-4 aspect-[16/9] relative">
+                            <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <span class="text-xs font-bold text-[#E67E50] uppercase tracking-wider">Hidden Gems</span>
+                        <h3
+                            class="text-2xl font-bold text-slate-900 mt-2 mb-2 group-hover:text-[#E67E50] transition-colors">
+                            The 5 Italian villages you've never heard of.</h3>
+                        <p class="text-slate-500 leading-relaxed">Forget Cinque Terre. These mountain retreats offer
+                            authentic pasta and silence...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE: BOOKING (Form) -->
+        <section id="booking" class="page-view hidden absolute w-full top-0 left-0">
+            <div class="pt-16 px-6 max-w-xl mx-auto stagger-group min-h-[80vh] flex flex-col justify-center">
+                <div class="mb-8 text-center stagger-item">
+                    <span class="font-script text-[#E67E50] text-3xl mb-2 block">Let's go</span>
+                    <h1 class="text-4xl font-bold text-slate-900 tracking-tight">Start your journey.</h1>
+                </div>
+
+                <form class="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl stagger-item"
+                    onsubmit="event.preventDefault(); handlePrimaryAction(this.querySelector('button'));">
+                    <div class="space-y-6">
+                        <div class="relative group">
+                            <input type="text" id="name" required=""
+                                class="peer w-full border-b-2 border-slate-200 py-2 placeholder-transparent focus:border-[#E67E50] focus:outline-none transition-colors bg-transparent text-slate-900"
+                                placeholder="Name">
+                            <label for="name"
+                                class="absolute left-0 -top-3.5 text-xs text-slate-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#E67E50]">Full
+                                Name</label>
+                        </div>
+
+                        <div class="relative group">
+                            <input type="email" id="email" required=""
+                                class="peer w-full border-b-2 border-slate-200 py-2 placeholder-transparent focus:border-[#E67E50] focus:outline-none transition-colors bg-transparent text-slate-900"
+                                placeholder="Email">
+                            <label for="email"
+                                class="absolute left-0 -top-3.5 text-xs text-slate-400 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-slate-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-[#E67E50]">Email
+                                Address</label>
+                        </div>
+
+                        <div class="relative group">
+                            <select
+                                class="peer w-full border-b-2 border-slate-200 py-2 focus:border-[#E67E50] focus:outline-none transition-colors bg-transparent text-slate-900 appearance-none">
+                                <option>Kyoto, Japan</option>
+                                <option>Santorini, Greece</option>
+                                <option>Marrakech, Morocco</option>
+                            </select>
+                            <label class="absolute left-0 -top-3.5 text-xs text-[#E67E50]">Destination</label>
+                            <span class="absolute right-0 top-3 pointer-events-none text-slate-400">
+                                <span class="iconify" data-icon="lucide:chevron-down" data-width="16"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <button type="submit"
+                            class="w-full py-4 rounded-xl bg-[#0F172A] text-white font-medium hover:bg-[#E67E50] transition-colors flex justify-center items-center shadow-lg relative overflow-hidden group">
+                            <span class="btn-content font-semibold tracking-wide">Request Booking</span>
+                            <span class="btn-spinner absolute opacity-0"><span class="iconify animate-spin"
+                                    data-icon="lucide:loader-2" data-width="24"></span></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <a href="index.html" class="logo footer-logo">Earnest<span class="logo-accent">Tours</span></a>
-                <p>Making your dream vacations a reality since 2010.</p>
+    <footer class="bg-[#0F172A] text-slate-300 py-16 mt-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                    <div class="w-8 h-8 rounded-lg bg-[#E67E50] flex items-center justify-center text-white">
+                        <span class="iconify" data-icon="lucide:compass" data-width="20"></span>
+                    </div>
+                    <span class="text-xl font-semibold text-white tracking-tight">earnesttours</span>
+                </a>
+                <div class="flex gap-6 text-sm font-light">
+                    <button onclick="route(event, 'destinations')"
+                        class="hover:text-[#E67E50] transition-colors">Destinations</button>
+                    <button onclick="route(event, 'packages')"
+                        class="hover:text-[#E67E50] transition-colors">Packages</button>
+                    <button onclick="route(event, 'journal')"
+                        class="hover:text-[#E67E50] transition-colors">Journal</button>
+                </div>
+                <div class="text-xs text-slate-500 font-light">
+                    © 2026 Earnest Tours. <span class="hidden md:inline">Adventure awaits.</span>
+                </div>
             </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-newsletter">
-                <h4>Newsletter</h4>
-                <p>Subscribe for travel tips and exclusive offers.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your email address">
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
-            </div>
-        </div>
-        <div class="footer-bottom container">
-            <p>&copy; 2026 Earnest Tours. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <script>
+        // --- GLOBAL STATE ---
+        let currentPage = 'destinations';
+
+        // --- NAVIGATION ROUTER (SPA LOGIC) ---
+        function route(e, targetId) {
+            e.preventDefault();
+            if (targetId === currentPage) return;
+
+            const appContainer = document.getElementById('app-container');
+            const currentView = document.getElementById(currentPage);
+            const nextView = document.getElementById(targetId);
+
+            // 1. Update Active Nav State
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const isTarget = link.getAttribute('data-target') === targetId;
+                const afterEl = link;
+                // Using CSS classes for the underline animation based on logic
+                if (isTarget) {
+                    link.classList.remove('text-slate-600');
+                    link.classList.add('text-[#E67E50]');
+                    // Force a style recalculation for the pseudo-element if needed, 
+                    // but usually class toggle handles the ::after scale transition defined in CSS.
+                    link.classList.add('active-nav'); // We can use this class to trigger CSS
+                } else {
+                    link.classList.add('text-slate-600');
+                    link.classList.remove('text-[#E67E50]');
+                    link.classList.remove('active-nav');
+                }
+            });
+            // Update the 'style' attribute for the pseudo elements manually via class isn't ideal, 
+            // so we rely on the Tailwind 'after:scale-x-...' classes toggling.
+            // Let's refine the nav update:
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(l => {
+                if (l.getAttribute('data-target') === targetId) {
+                    l.classList.remove('after:scale-x-0', 'text-slate-600');
+                    l.classList.add('after:scale-x-100', 'text-[#E67E50]');
+                } else {
+                    l.classList.remove('after:scale-x-100', 'text-[#E67E50]');
+                    l.classList.add('after:scale-x-0', 'text-slate-600');
+                }
+            });
+
+
+            // 2. Blur Transition Sequence
+            // A. Blur Out Current
+            currentView.classList.add('page-exit');
+
+            setTimeout(() => {
+                // B. Swap Visibility
+                currentView.classList.add('hidden');
+                currentView.classList.remove('page-exit');
+
+                nextView.classList.remove('hidden');
+                nextView.classList.add('page-enter'); // Applies unblur animation
+
+                // Scroll to top smoothly
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // C. Trigger Staggered Entry for new content
+                resetStaggers(nextView);
+                setTimeout(() => triggerStaggers(nextView), 50);
+
+                // Cleanup animation class
+                setTimeout(() => {
+                    nextView.classList.remove('page-enter');
+                }, 400);
+
+                currentPage = targetId;
+            }, 300); // Wait for blur out
+        }
+
+        // --- STAGGERED REVEALS (SCROLL OBSERVER) ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        function triggerStaggers(container) {
+            const items = container.querySelectorAll('.stagger-item');
+            items.forEach((item, index) => {
+                // Add delay based on index
+                item.style.transitionDelay = `${index * 100}ms`;
+                observer.observe(item);
+            });
+        }
+
+        function resetStaggers(container) {
+            const items = container.querySelectorAll('.stagger-item');
+            items.forEach(item => {
+                item.classList.remove('is-visible');
+                item.style.transitionDelay = '0ms';
+            });
+        }
+
+        // --- PRIMARY ACTION (LOADING STATE) ---
+        function handlePrimaryAction(btn) {
+            if (btn.disabled) return;
+
+            const content = btn.querySelector('.btn-content');
+            const spinner = btn.querySelector('.btn-spinner');
+
+            // Lock button
+            btn.disabled = true;
+
+            // Animation
+            content.classList.add('opacity-0', 'translate-y-2');
+            spinner.classList.remove('opacity-0', 'scale-75');
+            spinner.classList.add('opacity-100', 'scale-100');
+
+            // Simulate Network Request
+            setTimeout(() => {
+                // Success State (Green)
+                spinner.innerHTML = '<span class="iconify text-[#10B981]" data-icon="lucide:check" data-width="24"></span>';
+
+                setTimeout(() => {
+                    // Reset
+                    spinner.classList.add('opacity-0', 'scale-75');
+                    spinner.classList.remove('opacity-100', 'scale-100');
+                    content.classList.remove('opacity-0', 'translate-y-2');
+
+                    // Reset Icon after fade out
+                    setTimeout(() => {
+                        spinner.innerHTML = '<span class="iconify animate-spin" data-icon="lucide:loader-2" data-width="24"></span>';
+                        btn.disabled = false;
+
+                        // Function to open mailto link
+                        if (currentPage === 'booking') {
+                            const name = document.getElementById('name').value;
+                            const email = document.getElementById('email').value;
+                            const destination = document.querySelector('select').value;
+
+                            if (name && email) {
+                                window.location.href = `mailto:info@earnesttours.com?subject=Booking Request for ${destination}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0ADestination: ${destination}%0D%0A%0D%0APlease process my booking request.`;
+                            } else {
+                                alert("Please fill in your name and email.");
+                            }
+                        }
+                    }, 200);
+                }, 1000);
+            }, 1500);
+        }
+
+        // --- PARALLAX EFFECT (PHYSICS-BASED) ---
+        // We use transform directly for 60fps performance
+        window.addEventListener('scroll', () => {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+            const scrolled = window.scrollY;
+            const images = document.querySelectorAll('.parallax-img');
+
+            images.forEach(img => {
+                const parent = img.parentElement;
+                const rect = parent.getBoundingClientRect();
+
+                // Only animate if in viewport
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    // Calculate relative position
+                    const speed = 0.15;
+                    const offset = (rect.top - window.innerHeight / 2) * speed;
+                    img.style.transform = `translateY(${offset}px) scale(1.1)`; // Keep scale to avoid edges
+                }
+            });
+        });
+
+        // --- INITIALIZATION ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set initial Nav state
+            const initialNav = document.querySelector(`[data-target="${currentPage}"]`);
+            if (initialNav) {
+                initialNav.classList.remove('after:scale-x-0', 'text-slate-600');
+                initialNav.classList.add('after:scale-x-100', 'text-[#E67E50]');
+            }
+
+            // Trigger initial staggers
+            triggerStaggers(document.getElementById('destinations'));
+        });
+
+    </script>
+
     <script src="script.js"></script>
-    <script src="destinations.js"></script>
 </body>
 
 </html>

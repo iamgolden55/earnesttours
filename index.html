@@ -1,254 +1,741 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earnest Tours | Experience the World</title>
-    <meta name="description"
-        content="Discover your next adventure with Earnest Tours. Curated travel experiences, exclusive packages, and unforgettable journeys.">
-
-    <!-- Google Fonts -->
+    <title>Earnest Tours | Explore the World</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&amp;family=Yellowtail&amp;display=swap"
         rel="stylesheet">
-
-    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .font-script {
+            font-family: 'Yellowtail', cursive;
+        }
+
+        /* Custom scrollbar hiding for horizontal scroll areas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Typing Cursor */
+        .typing-cursor::after {
+            content: '|';
+            display: inline-block;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+            color: #E67E50;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
-<body>
-    <!-- Header -->
-    <header class="site-header">
-        <div class="container header-container">
-            <a href="#" class="logo">Earnest<span class="logo-accent">Tours</span></a>
-            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-            <nav class="main-nav">
-                <ul class="nav-list">
-                    <li><a href="destinations.html" class="nav-link">Destinations</a></li>
-                    <li><a href="packages.html" class="nav-link">Packages</a></li>
-                    <li><a href="services.html" class="nav-link">Services</a></li>
-                    <li><a href="#blog" class="nav-link">Blog</a></li>
-                    <li><a href="#contact" class="btn btn-primary">Book Now</a></li>
-                </ul>
-            </nav>
+<body class="bg-white text-slate-700 antialiased selection:bg-[#E67E50] selection:text-white">
+
+    <!-- Sticky Navigation -->
+    <nav class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-xl border-b border-slate-100 transition-all duration-300"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div
+                    class="w-8 h-8 rounded-lg bg-[#E67E50] flex items-center justify-center text-white rotate-3 group-hover:rotate-6 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+                    <span class="iconify" data-icon="lucide:compass" data-width="20"></span>
+                </div>
+                <span
+                    class="text-xl font-semibold tracking-tighter text-slate-900 group-hover:text-[#E67E50] transition-colors duration-300">earnesttours</span>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <button onclick="navigate(event, 'destinations.html')"
+                    class="nav-link text-sm font-medium text-[#E67E50] hover:text-[#E67E50] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-[#E67E50] after:scale-x-100 after:origin-left after:transition-transform after:duration-300"
+                    data-target="destinations">Destinations</button>
+                <button onclick="navigate(event, 'packages.html')"
+                    class="nav-link text-sm font-medium text-slate-600 hover:text-[#E67E50] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-[#E67E50] after:scale-x-0 after:origin-left after:transition-transform after:duration-300"
+                    data-target="packages">Packages</button>
+                <button onclick="navigate(event, 'journal.html')"
+                    class="nav-link text-sm font-medium text-slate-600 hover:text-[#E67E50] transition-colors relative after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-[#E67E50] after:scale-x-0 after:origin-left after:transition-transform after:duration-300"
+                    data-target="journal">Journal</button>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button onclick="navigate(event, 'booking')"
+                    class="hidden md:flex items-center gap-2 px-5 py-2.5 bg-[#0F172A] text-white text-xs font-medium rounded-full hover:bg-slate-800 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] group">
+                    <span>Book Trip</span>
+                    <span class="iconify group-hover:translate-x-1 transition-transform" data-icon="lucide:arrow-right"
+                        data-width="14"></span>
+                </button>
+                <!-- Mobile Menu Toggle (Simplified for visual) -->
+                <button
+                    class="md:hidden p-2 text-slate-600 hover:bg-slate-50 rounded-full transition-colors mobile-menu-toggle">
+                    <span class="iconify" data-icon="lucide:menu" data-width="24"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <nav class="main-nav md:hidden">
+            <ul class="nav-list flex flex-col gap-4 p-4">
+                <li>
+                    <button onclick="navigate(event, 'destinations.html')"
+                        class="nav-link text-lg font-medium text-slate-700 hover:text-[#E67E50] w-full text-left">Destinations</button>
+                </li>
+                <li>
+                    <button onclick="navigate(event, 'packages.html')"
+                        class="nav-link text-lg font-medium text-slate-700 hover:text-[#E67E50] w-full text-left">Packages</button>
+                </li>
+                <li>
+                    <button onclick="navigate(event, 'journal.html')"
+                        class="nav-link text-lg font-medium text-slate-700 hover:text-[#E67E50] w-full text-left">Journal</button>
+                </li>
+                <li class="pt-4 border-t border-slate-100">
+                    <button onclick="navigate(event, 'booking')"
+                        class="flex items-center gap-2 text-lg font-medium text-[#E67E50] w-full text-left">
+                        <span>Book Trip</span>
+                        <span class="iconify" data-icon="lucide:arrow-right" data-width="16"></span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative w-full h-[650px] md:h-[750px] overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&amp;w=2070&amp;auto=format&amp;fit=crop"
+                alt="Travel Landscape" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-transparent to-black/60"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 h-full flex flex-col justify-center items-center text-center px-6 pt-10 pb-20 reveal">
+            <span class="font-script text-[#E67E50] text-3xl md:text-5xl mb-4 rotate-[-2deg] drop-shadow-lg">Wander
+                often, wonder always</span>
+            <h1 id="typing-title"
+                class="text-4xl md:text-6xl lg:text-7xl font-semibold text-white tracking-tight max-w-4xl leading-[1.1] mb-6 drop-shadow-xl min-h-[3.3em] md:min-h-[2.2em]">
+                <!-- Javascript will type here -->
+            </h1>
+            <p id="typing-subtitle"
+                class="text-slate-200 text-sm md:text-lg max-w-xl font-light mb-10 leading-relaxed min-h-[4.5em]">
+                <!-- Javascript will type here -->
+            </p>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <video class="hero-video" autoplay muted loop playsinline
-                poster="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1600">
-                <source src="https://videos.pexels.com/video-files/2169880/2169880-uhd_2560_1440_30fps.mp4"
-                    type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="hero-bg-overlay"></div>
-            <div class="container hero-content">
-                <h1 class="hero-title">
-                    <span class="script-accent">Discover</span>
-                    Your Next Great Adventure
-                </h1>
-                <p class="hero-subtitle">Curated journeys designed for the modern explorer.</p>
+    <!-- Search Interface (Floating) -->
+    <section class="relative z-30 px-6 -mt-24 md:-mt-20 mb-20">
+        <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl shadow-slate-200/50 p-6 md:p-8 border border-slate-100 reveal"
+            style="transition-delay: 200ms;">
+            <form class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+                <!-- Destination -->
+                <div class="md:col-span-4 space-y-2">
+                    <label
+                        class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Destination</label>
+                    <div class="relative group">
+                        <span
+                            class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#E67E50] transition-colors">
+                            <span class="iconify" data-icon="lucide:map-pin" data-width="18"></span>
+                        </span>
+                        <input type="text" placeholder="Where do you want to go?"
+                            class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#E67E50]/20 focus:border-[#E67E50] transition-all placeholder:text-slate-400">
+                    </div>
+                </div>
 
-                <!-- Search Interface -->
-                <div class="search-interface card">
-                    <form class="search-form" onsubmit="event.preventDefault();">
-                        <div class="form-group">
-                            <label for="destination">Where to?</label>
-                            <div class="select-wrapper">
-                                <select id="destination" name="destination">
-                                    <option value="" disabled selected>Select Destination</option>
-                                    <option value="europe">Europe</option>
-                                    <option value="asia">Asia</option>
-                                    <option value="americas">The Americas</option>
-                                    <option value="africa">Africa</option>
-                                </select>
+                <!-- Check In -->
+                <div class="md:col-span-3 space-y-2">
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Date</label>
+                    <div class="relative group">
+                        <span
+                            class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#E67E50] transition-colors">
+                            <span class="iconify" data-icon="lucide:calendar" data-width="18"></span>
+                        </span>
+                        <input type="date"
+                            class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#E67E50]/20 focus:border-[#E67E50] transition-all appearance-none">
+                    </div>
+                </div>
+
+                <!-- Guests -->
+                <div class="md:col-span-3 space-y-2">
+                    <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Travelers</label>
+                    <div class="relative group">
+                        <span
+                            class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#E67E50] transition-colors">
+                            <span class="iconify" data-icon="lucide:users" data-width="18"></span>
+                        </span>
+                        <select
+                            class="w-full pl-11 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#E67E50]/20 focus:border-[#E67E50] transition-all appearance-none cursor-pointer">
+                            <option>1 Traveler</option>
+                            <option>2 Travelers</option>
+                            <option>3 Travelers</option>
+                            <option>4+ Travelers</option>
+                        </select>
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                            <span class="iconify" data-icon="lucide:chevron-down" data-width="16"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Search Button -->
+                <div class="md:col-span-2">
+                    <button type="button"
+                        class="w-full h-[46px] bg-[#E67E50] hover:bg-[#d66e40] text-white rounded-xl font-medium shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5">
+                        <span class="iconify" data-icon="lucide:search" data-width="18"></span>
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Popular Destinations Section (Light Beige BG) -->
+    <section class="py-24 bg-[#FDFBF7]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div class="reveal">
+                    <span class="text-[#E67E50] font-script text-2xl mb-1 block">Handpicked</span>
+                    <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight">Popular Destinations
+                    </h2>
+                </div>
+                <div class="flex gap-3">
+                    <button
+                        class="w-10 h-10 rounded-full border border-slate-200 bg-white text-slate-600 flex items-center justify-center hover:border-[#E67E50] hover:text-[#E67E50] transition-all">
+                        <span class="iconify" data-icon="lucide:arrow-left" data-width="20"></span>
+                    </button>
+                    <button
+                        class="w-10 h-10 rounded-full bg-[#1E293B] text-white flex items-center justify-center shadow-lg hover:bg-[#E67E50] transition-all">
+                        <span class="iconify" data-icon="lucide:arrow-right" data-width="20"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300 border border-slate-100 flex flex-col h-full reveal"
+                    style="transition-delay: 100ms;">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&amp;w=2073&amp;auto=format&amp;fit=crop"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 right-4 bg-white/90 backdrop-blur p-2 rounded-full shadow-sm text-rose-500">
+                            <span class="iconify" data-icon="lucide:heart" data-width="18"></span>
+                        </div>
+                        <div
+                            class="absolute bottom-4 left-4 bg-slate-900/80 backdrop-blur px-3 py-1 rounded-full text-white text-xs font-medium border border-white/10">
+                            7 Days
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3
+                                class="text-lg font-semibold text-slate-900 group-hover:text-[#E67E50] transition-colors">
+                                Paris, France</h3>
+                            <div class="flex items-center gap-1 text-amber-400 text-sm">
+                                <span class="iconify" data-icon="lucide:star" data-width="14"></span>
+                                <span class="text-slate-600 font-medium">4.9</span>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="checkin">Dates</label>
-                            <input type="date" id="checkin" name="checkin">
+                        <div class="flex items-center gap-2 text-slate-500 text-xs mb-4">
+                            <span class="iconify" data-icon="lucide:map" data-width="14"></span>
+                            <span>Europe</span>
                         </div>
-                        <div class="form-group">
-                            <label for="guests">Guests</label>
-                            <select id="guests" name="guests">
-                                <option value="1">1 Guest</option>
-                                <option value="2" selected>2 Guests</option>
-                                <option value="3">3 Guests</option>
-                                <option value="4+">4+ Guests</option>
-                            </select>
+                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-50">
+                            <div>
+                                <p class="text-xs text-slate-400">From</p>
+                                <p class="text-lg font-semibold text-slate-900">$1,250</p>
+                            </div>
+                            <button
+                                class="px-4 py-2 rounded-full bg-slate-50 text-slate-900 text-xs font-medium hover:bg-[#E67E50] hover:text-white transition-colors">
+                                View Details
+                            </button>
                         </div>
-                        <button type="submit" class="btn btn-primary search-btn">Search Flights</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Services Section -->
-        <section id="services" class="section services-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-subtitle script-accent">Why Choose Us</span>
-                    <h2 class="section-title">Travel with Confidence</h2>
+                <!-- Card 2 -->
+                <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300 border border-slate-100 flex flex-col h-full reveal"
+                    style="transition-delay: 200ms;">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&amp;w=2038&amp;auto=format&amp;fit=crop"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 right-4 bg-white/90 backdrop-blur p-2 rounded-full shadow-sm text-slate-400 hover:text-rose-500 transition-colors">
+                            <span class="iconify" data-icon="lucide:heart" data-width="18"></span>
+                        </div>
+                        <div
+                            class="absolute bottom-4 left-4 bg-slate-900/80 backdrop-blur px-3 py-1 rounded-full text-white text-xs font-medium border border-white/10">
+                            10 Days
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3
+                                class="text-lg font-semibold text-slate-900 group-hover:text-[#E67E50] transition-colors">
+                                Bali, Indonesia</h3>
+                            <div class="flex items-center gap-1 text-amber-400 text-sm">
+                                <span class="iconify" data-icon="lucide:star" data-width="14"></span>
+                                <span class="text-slate-600 font-medium">4.8</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-500 text-xs mb-4">
+                            <span class="iconify" data-icon="lucide:map" data-width="14"></span>
+                            <span>Asia</span>
+                        </div>
+                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-50">
+                            <div>
+                                <p class="text-xs text-slate-400">From</p>
+                                <p class="text-lg font-semibold text-slate-900">$850</p>
+                            </div>
+                            <button
+                                class="px-4 py-2 rounded-full bg-slate-50 text-slate-900 text-xs font-medium hover:bg-[#E67E50] hover:text-white transition-colors">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <!-- Carousel container would go here - simplified grid for now/skeleton -->
-                <div class="services-grid">
-                    <div class="service-card card">
-                        <div class="service-icon">
-                            <img src="assets/icon_glider.png" alt="Glider Icon">
-                        </div>
-                        <h3>Seamless Booking</h3>
-                        <p>Easy, transparent booking process with no hidden fees.</p>
-                    </div>
-                    <div class="service-card card">
-                        <div class="service-icon">
-                            <img src="assets/icon_cablecar.png" alt="Cable Car Icon">
-                        </div>
-                        <h3>Travel Insurance</h3>
-                        <p>Comprehensive coverage for peace of mind on every trip.</p>
-                    </div>
-                    <div class="service-card card">
-                        <div class="service-icon">
-                            <img src="assets/icon_explorer.png" alt="Explorer Icon">
-                        </div>
-                        <h3>Local Guides</h3>
-                        <p>Authentic experiences led by expert local guides.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Destinations Section -->
-        <section id="destinations" class="section bg-light-beige">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-subtitle script-accent">Explore</span>
-                    <h2 class="section-title">Popular Destinations</h2>
-                </div>
-                <div class="destinations-grid">
-                    <div class="card destination-card">
-                        <div class="card-image-placeholder"
-                            style="background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1613395877344-13d4c2ce5d4d?auto=format&fit=crop&q=80&w=800');">
-                            <span class="card-price-tag">From $1,299</span>
+                <!-- Card 3 -->
+                <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300 border border-slate-100 flex flex-col h-full reveal"
+                    style="transition-delay: 300ms;">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&amp;w=1972&amp;auto=format&amp;fit=crop"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 right-4 bg-white/90 backdrop-blur p-2 rounded-full shadow-sm text-slate-400 hover:text-rose-500 transition-colors">
+                            <span class="iconify" data-icon="lucide:heart" data-width="18"></span>
                         </div>
-                        <div class="card-content">
-                            <h3>Santorini, Greece</h3>
-                            <p>Experience the stunning sunsets and white-washed architecture of this Cycladic gem.</p>
-                            <a href="#" class="btn btn-text">View Package &rarr;</a>
+                        <div
+                            class="absolute bottom-4 left-4 bg-slate-900/80 backdrop-blur px-3 py-1 rounded-full text-white text-xs font-medium border border-white/10">
+                            5 Days
                         </div>
                     </div>
-                    <div class="card destination-card">
-                        <div class="card-image-placeholder"
-                            style="background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=800');">
-                            <span class="card-price-tag">From $1,899</span>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3
+                                class="text-lg font-semibold text-slate-900 group-hover:text-[#E67E50] transition-colors">
+                                Cinque Terre, Italy</h3>
+                            <div class="flex items-center gap-1 text-amber-400 text-sm">
+                                <span class="iconify" data-icon="lucide:star" data-width="14"></span>
+                                <span class="text-slate-600 font-medium">5.0</span>
+                            </div>
                         </div>
-                        <div class="card-content">
-                            <h3>Kyoto, Japan</h3>
-                            <p>Discover ancient temples, bamboo forests, and beautiful cherry blossoms.</p>
-                            <a href="#" class="btn btn-text">View Package &rarr;</a>
+                        <div class="flex items-center gap-2 text-slate-500 text-xs mb-4">
+                            <span class="iconify" data-icon="lucide:map" data-width="14"></span>
+                            <span>Europe</span>
+                        </div>
+                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-50">
+                            <div>
+                                <p class="text-xs text-slate-400">From</p>
+                                <p class="text-lg font-semibold text-slate-900">$1,400</p>
+                            </div>
+                            <button
+                                class="px-4 py-2 rounded-full bg-slate-50 text-slate-900 text-xs font-medium hover:bg-[#E67E50] hover:text-white transition-colors">
+                                View Details
+                            </button>
                         </div>
                     </div>
-                    <div class="card destination-card">
-                        <div class="card-image-placeholder"
-                            style="background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1587595431973-160d0d94add1?auto=format&fit=crop&q=80&w=800');">
-                            <span class="card-price-tag">From $2,100</span>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:shadow-orange-500/10 transition-all duration-300 border border-slate-100 flex flex-col h-full reveal"
+                    style="transition-delay: 400ms;">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&amp;w=2071&amp;auto=format&amp;fit=crop"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 right-4 bg-white/90 backdrop-blur p-2 rounded-full shadow-sm text-slate-400 hover:text-rose-500 transition-colors">
+                            <span class="iconify" data-icon="lucide:heart" data-width="18"></span>
                         </div>
-                        <div class="card-content">
-                            <h3>Machu Picchu, Peru</h3>
-                            <p>Trek through the Andes to the lost city of the Incas. A bucket-list adventure.</p>
-                            <a href="#" class="btn btn-text">View Package &rarr;</a>
+                        <div
+                            class="absolute bottom-4 left-4 bg-slate-900/80 backdrop-blur px-3 py-1 rounded-full text-white text-xs font-medium border border-white/10">
+                            8 Days
+                        </div>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3
+                                class="text-lg font-semibold text-slate-900 group-hover:text-[#E67E50] transition-colors">
+                                Agra, India</h3>
+                            <div class="flex items-center gap-1 text-amber-400 text-sm">
+                                <span class="iconify" data-icon="lucide:star" data-width="14"></span>
+                                <span class="text-slate-600 font-medium">4.7</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 text-slate-500 text-xs mb-4">
+                            <span class="iconify" data-icon="lucide:map" data-width="14"></span>
+                            <span>Asia</span>
+                        </div>
+                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-slate-50">
+                            <div>
+                                <p class="text-xs text-slate-400">From</p>
+                                <p class="text-lg font-semibold text-slate-900">$920</p>
+                            </div>
+                            <button
+                                class="px-4 py-2 rounded-full bg-slate-50 text-slate-900 text-xs font-medium hover:bg-[#E67E50] hover:text-white transition-colors">
+                                View Details
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Blog Section -->
-        <section id="blog" class="section blog-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="section-subtitle script-accent">Travel Journal</span>
-                    <h2 class="section-title">Inspiration for Your Trip</h2>
-                </div>
-                <div class="blog-grid">
-                    <article class="blog-card">
-                        <div class="blog-image-placeholder"
-                            style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;">
-                        </div>
-                        <div class="blog-meta">Travel Tips • 5 min read</div>
-                        <h3>10 Packing Essentials for Europe</h3>
-                        <p>Don't leave home without these key items for your European summer adventure.</p>
-                        <a href="#" class="btn btn-text">Read More &rarr;</a>
-                    </article>
-                    <article class="blog-card">
-                        <div class="blog-image-placeholder"
-                            style="background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;">
-                        </div>
-                        <div class="blog-meta">Guides • 7 min read</div>
-                        <h3>The Ultimate Foodie Guide to Italy</h3>
-                        <p>From pasta to gelato, here's where to find the best culinary experiences.</p>
-                        <a href="#" class="btn btn-text">Read More &rarr;</a>
-                    </article>
-                    <article class="blog-card">
-                        <div class="blog-image-placeholder"
-                            style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;">
-                        </div>
-                        <div class="blog-meta">Inspiration • 4 min read</div>
-                        <h3>Hidden Gems of Southeast Asia</h3>
-                        <p>Escape the crowds and discover these untouched paradises.</p>
-                        <a href="#" class="btn btn-text">Read More &rarr;</a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <a href="#" class="logo footer-logo">Earnest<span class="logo-accent">Tours</span></a>
-                <p>Making your dream vacations a reality since 2010.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div class="footer-newsletter">
-                <h4>Newsletter</h4>
-                <p>Subscribe for travel tips and exclusive offers.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your email address">
-                    <button type="submit" class="btn btn-primary">Subscribe</button>
-                </form>
             </div>
         </div>
-        <div class="footer-bottom container">
-            <p>&copy; 2026 Earnest Tours. All rights reserved.</p>
+    </section>
+
+    <!-- Schengen Visa Section -->
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Content -->
+                <div class="reveal">
+                    <span class="text-[#E67E50] font-script text-3xl mb-2 block">Let experts handle your</span>
+                    <h2 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6">Schengen Visa
+                        <br>Appointment
+                    </h2>
+
+                    <p class="text-slate-500 mb-8 font-light text-lg leading-relaxed">
+                        Schengen Visa appointment? <span class="font-medium text-slate-700">Earnest Tours</span> will
+                        handle your Schengen Visa Processing for Seamless European Adventures. Earnest Tours simplifies
+                        Schengen visa processing with expert guidance, ensuring a hassle-free application for your
+                        European adventure.
+                    </p>
+
+                    <button
+                        class="px-8 py-4 bg-[#E67E50] text-white font-bold tracking-wide rounded-lg hover:bg-[#d66e40] shadow-lg shadow-orange-500/30 transition-all transform hover:-translate-y-1">
+                        BOOK NOW!
+                    </button>
+                </div>
+
+                <!-- Image Stack (Right Side) -->
+                <div class="relative reveal order-first lg:order-last">
+                    <!-- Decorative Elements -->
+                    <div class="absolute -top-4 -right-4 w-24 h-24 bg-orange-100 rounded-full blur-2xl opacity-60">
+                    </div>
+
+                    <!-- Staggered Grid like 'Why Choose Us' -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop"
+                            class="w-full h-64 object-cover rounded-2xl shadow-lg mt-8 transform hover:-translate-y-2 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?q=80&w=800&auto=format&fit=crop"
+                            class="w-full h-64 object-cover rounded-2xl shadow-lg mb-8 transform hover:translate-y-2 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition Section (White) -->
+    <section class="py-24 bg-[#FDFBF7]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative reveal">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-orange-100 rounded-full blur-2xl opacity-60"></div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?q=80&amp;w=2070&amp;auto=format&amp;fit=crop"
+                            class="w-full h-64 object-cover rounded-2xl shadow-lg mt-8 transform hover:-translate-y-2 transition-transform duration-500">
+                        <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&amp;w=1887&amp;auto=format&amp;fit=crop"
+                            class="w-full h-64 object-cover rounded-2xl shadow-lg mb-8 transform hover:translate-y-2 transition-transform duration-500">
+                    </div>
+                    <!-- Stats Card -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div
+                            class="bg-white/95 backdrop-blur shadow-2xl p-6 rounded-2xl border border-slate-100 text-center max-w-[200px]">
+                            <span class="block text-4xl font-bold text-[#E67E50]">15k+</span>
+                            <span class="text-sm text-slate-500">Happy travelers every year</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal" style="transition-delay: 200ms;">
+                    <span class="text-[#E67E50] font-script text-2xl mb-1 block">Why Choose Us</span>
+                    <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight mb-6">Plan your trip
+                        with<br>confidence and ease.</h2>
+                    <p class="text-slate-500 mb-10 font-light text-lg leading-relaxed">
+                        We prioritize your experience above all else. From curated itineraries to 24/7 support, we
+                        ensure your journey is seamless and unforgettable.
+                    </p>
+
+                    <div class="space-y-6">
+                        <!-- Feature 1 -->
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center text-[#E67E50] flex-shrink-0">
+                                <span class="iconify" data-icon="lucide:shield-check" data-width="24"></span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900">Total Security</h4>
+                                <p class="text-sm text-slate-500 mt-1">Your bookings are protected with our
+                                    comprehensive insurance partnerships.</p>
+                            </div>
+                        </div>
+                        <!-- Feature 2 -->
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center text-[#E67E50] flex-shrink-0">
+                                <span class="iconify" data-icon="lucide:wallet" data-width="24"></span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900">Best Price Guarantee</h4>
+                                <p class="text-sm text-slate-500 mt-1">We match prices so you get the most value for
+                                    your dream vacation.</p>
+                            </div>
+                        </div>
+                        <!-- Feature 3 -->
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center text-[#E67E50] flex-shrink-0">
+                                <span class="iconify" data-icon="lucide:headset" data-width="24"></span>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-slate-900">24/7 Support</h4>
+                                <p class="text-sm text-slate-500 mt-1">Our dedicated team is always just a call away, no
+                                    matter the time zone.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section (Light Beige) -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-[#E67E50] font-script text-2xl mb-1 block">Inspiration</span>
+                <h2 class="text-3xl md:text-4xl font-semibold text-slate-900 tracking-tight mb-4">Travel Stories &amp;
+                    Tips</h2>
+                <p class="text-slate-500 font-light max-w-2xl mx-auto">Get inspired by the latest travel trends, hidden
+                    gems, and expert advice for your next adventure.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Blog 1 -->
+                <article class="flex flex-col group cursor-pointer reveal" style="transition-delay: 100ms;">
+                    <div class="overflow-hidden rounded-2xl mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&amp;w=1974&amp;auto=format&amp;fit=crop"
+                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-slate-800">
+                            Tips</div>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-slate-500 mb-2">
+                        <span class="flex items-center gap-1"><span class="iconify" data-icon="lucide:calendar"
+                                data-width="12"></span> Oct 12, 2023</span>
+                        <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                        <span>5 min read</span>
+                    </div>
+                    <h3
+                        class="text-xl font-semibold text-slate-900 group-hover:text-[#E67E50] transition-colors mb-2 leading-tight">
+                        Traveling Solo: A Guide to Finding Yourself</h3>
+                    <p class="text-sm text-slate-500 line-clamp-2 mb-4">Discover the freedom and personal growth that
+                        comes with exploring new destinations on your own terms.</p>
+                    <a href="#"
+                        class="inline-flex items-center gap-1 text-sm font-medium text-[#E67E50] hover:underline mt-auto">
+                        Read More <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+                    </a>
+                </article>
+
+                <!-- Blog 2 -->
+                <article class="flex flex-col group cursor-pointer reveal" style="transition-delay: 200ms;">
+                    <div class="overflow-hidden rounded-2xl mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&amp;w=2070&amp;auto=format&amp;fit=crop"
+                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-slate-800">
+                            Luxury</div>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-slate-500 mb-2">
+                        <span class="flex items-center gap-1"><span class="iconify" data-icon="lucide:calendar"
+                                data-width="12"></span> Sep 28, 2023</span>
+                        <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                        <span>7 min read</span>
+                    </div>
+                    <h3
+                        class="text-xl font-semibold text-slate-900 group-hover:text-[#E67E50] transition-colors mb-2 leading-tight">
+                        Top 10 Overwater Bungalows in Maldives</h3>
+                    <p class="text-sm text-slate-500 line-clamp-2 mb-4">Experience the ultimate luxury with our curated
+                        list of the most stunning resorts in the Indian Ocean.</p>
+                    <a href="#"
+                        class="inline-flex items-center gap-1 text-sm font-medium text-[#E67E50] hover:underline mt-auto">
+                        Read More <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+                    </a>
+                </article>
+
+                <!-- Blog 3 -->
+                <article class="flex flex-col group cursor-pointer reveal" style="transition-delay: 300ms;">
+                    <div class="overflow-hidden rounded-2xl mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&amp;w=2070&amp;auto=format&amp;fit=crop"
+                            class="w-full h-56 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div
+                            class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-slate-800">
+                            Adventure</div>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-slate-500 mb-2">
+                        <span class="flex items-center gap-1"><span class="iconify" data-icon="lucide:calendar"
+                                data-width="12"></span> Sep 15, 2023</span>
+                        <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                        <span>4 min read</span>
+                    </div>
+                    <h3
+                        class="text-xl font-semibold text-slate-900 group-hover:text-[#E67E50] transition-colors mb-2 leading-tight">
+                        Hiking Patagonia: What to Pack</h3>
+                    <p class="text-sm text-slate-500 line-clamp-2 mb-4">Prepare for the trek of a lifetime with our
+                        essential gear guide for the unpredictable weather of the south.</p>
+                    <a href="#"
+                        class="inline-flex items-center gap-1 text-sm font-medium text-[#E67E50] hover:underline mt-auto">
+                        Read More <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter CTA (White) -->
+    <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-6 reveal">
+            <div class="bg-[#1E293B] rounded-3xl p-10 md:p-16 text-center relative overflow-hidden">
+                <!-- Decorative Circles -->
+                <div class="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-slate-700/30 rounded-full blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 -ml-16 -mb-16 w-64 h-64 bg-[#E67E50]/20 rounded-full blur-3xl">
+                </div>
+
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">Subscribe to get
+                        special offers</h2>
+                    <p class="text-slate-300 font-light mb-8 max-w-lg mx-auto">Join our newsletter to receive exclusive
+                        travel deals, destination guides, and inspiration directly to your inbox.</p>
+
+                    <form class="max-w-md mx-auto flex flex-col md:flex-row gap-3"
+                        onsubmit="event.preventDefault(); window.location.href='mailto:info@earnesttours.com?subject=Newsletter Subscription&body=Please subscribe me to the newsletter: ' + this.querySelector('input[type=email]').value;">
+                        <div class="flex-grow">
+                            <input type="email" placeholder="Your email address"
+                                class="w-full px-5 py-3.5 bg-slate-800/50 border border-slate-700 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#E67E50] focus:border-transparent transition-all"
+                                required>
+                        </div>
+                        <button type="submit"
+                            class="px-8 py-3.5 bg-[#E67E50] text-white font-medium rounded-xl hover:bg-[#d66e40] shadow-lg shadow-orange-500/30 transition-all whitespace-nowrap">
+                            Subscribe
+                        </button>
+                    </form>
+                    <p class="text-slate-500 text-xs mt-4">No spam, unsubscribe anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Navy) -->
+    <footer class="bg-[#1E293B] text-slate-300 py-16 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <a href="index.html" class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 rounded-lg bg-[#E67E50] flex items-center justify-center text-white">
+                            <span class="iconify" data-icon="lucide:compass" data-width="20"></span>
+                        </div>
+                        <span class="text-xl font-semibold text-white tracking-tight">earnesttours</span>
+                    </a>
+                    <p class="text-sm font-light leading-relaxed mb-6 text-slate-400">
+                        Crafting unforgettable journeys for the modern traveler. Let us help you discover the world's
+                        beauty, one trip at a time.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-[#E67E50] hover:text-white transition-all"><span
+                                class="iconify" data-icon="lucide:facebook" data-width="16"></span></a>
+                        <a href="#"
+                            class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-[#E67E50] hover:text-white transition-all"><span
+                                class="iconify" data-icon="lucide:instagram" data-width="16"></span></a>
+                        <a href="#"
+                            class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-[#E67E50] hover:text-white transition-all"><span
+                                class="iconify" data-icon="lucide:twitter" data-width="16"></span></a>
+                    </div>
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li><a href="#" class="hover:text-[#E67E50] transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-[#E67E50] transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-[#E67E50] transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-[#E67E50] transition-colors">Press</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Support</h4>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li><a href="#" class="hover:text-[#E67E50] transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-[#E67E50] transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-[#E67E50] transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-[#E67E50] transition-colors">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-white font-semibold mb-6">Contact</h4>
+                    <ul class="space-y-4 text-sm font-light">
+                        <li class="flex items-start gap-3">
+                            <span class="iconify mt-1 text-[#E67E50]" data-icon="lucide:map-pin" data-width="16"></span>
+                            <span>2nd Floor, 48 West George Street,<br>Glasgow, Scotland, G2 1BP</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="iconify text-[#E67E50]" data-icon="lucide:phone" data-width="16"></span>
+                            <span>+44 7717 466176</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="iconify text-[#E67E50]" data-icon="lucide:mail" data-width="16"></span>
+                            <span>info@earnesttours.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-light text-slate-500">
+                <p>© 2026 Earnest Tours. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-white transition-colors">Sitemap</a>
+                </div>
+            </div>
         </div>
     </footer>
+
 
     <script src="script.js"></script>
 </body>

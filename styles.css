@@ -615,8 +615,8 @@ h3 {
 
     .main-nav {
         position: fixed;
-        top: 70px;
-        /* Adjust based on header height */
+        top: 80px;
+        /* Adjust based on header height (h-20 = 5rem = 80px) */
         left: 0;
         width: 100%;
         background: white;
@@ -645,4 +645,126 @@ h3 {
         max-width: 100%;
         justify-content: center;
     }
+}
+
+/* --- Masonry Gallery Styles (Global) --- */
+.masonry-grid,
+.destinations-grid {
+    column-count: 3;
+    column-gap: 2rem;
+    margin-top: 2rem;
+    /* Reset Grid if it was defined elsewhere */
+    display: block;
+}
+
+.masonry-item,
+.discovery-card,
+.destination-card {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 2rem;
+    break-inside: avoid;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.masonry-item:hover,
+.discovery-card:hover,
+.destination-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.masonry-item img,
+.discovery-card img,
+.destination-card img {
+    /* Ensure images in cards are zoomable and responsive */
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: zoom-in;
+    transition: transform 0.5s ease;
+}
+
+.masonry-item:hover img,
+.discovery-card:hover img,
+.destination-card:hover img {
+    transform: scale(1.05);
+}
+
+/* Responsive Masonry */
+@media (max-width: 900px) {
+
+    .masonry-grid,
+    .destinations-grid {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .masonry-grid,
+    .destinations-grid {
+        column-count: 1;
+    }
+}
+
+/* --- Lightbox Styles --- */
+.lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    object-fit: contain;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.2s;
+}
+
+.lightbox-close:hover {
+    transform: scale(1.1) rotate(90deg);
 }

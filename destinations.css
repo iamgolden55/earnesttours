@@ -105,12 +105,10 @@
     padding-bottom: 4rem;
 }
 
+/* Masonry Layout */
+/* Masonry Layout is now handled in styles.css via .masonry-grid */
 .destinations-grid {
-    display: grid;
-    /* Responsive Grid Logic similar to Airbnb */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    /* Airy spacing */
+    /* We will use a shared class for the layout, maintaining this selector for specificity if needed */
     margin-top: 2rem;
 }
 
@@ -119,13 +117,17 @@
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    /* Use a very subtle shadow or none often looks cleaner for grids, but we'll keep a soft one */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     border: 1px solid rgba(0, 0, 0, 0.04);
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
+    /* Essential for column-count to not break items */
+    width: 100%;
+    margin-bottom: 2rem;
+    /* Spacing between items vertically */
+    break-inside: avoid;
+    /* Prevent card from splitting across columns */
 }
 
 .discovery-card:hover {
@@ -156,20 +158,19 @@
 
 .card-img-container {
     width: 100%;
-    padding-top: 100%;
-    /* Square Aspect Ratio often looks great in grids (Airbnb style) */
+    /* Removed fixed padding-top to allow natural height */
     position: relative;
     background-color: #f0f0f0;
     overflow: hidden;
+    cursor: pointer;
+    /* Indicate clickable for lightbox */
 }
 
 .card-img-container img {
-    position: absolute;
-    top: 0;
-    left: 0;
+    /* Removed absolute positioning */
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    display: block;
     transition: transform 0.5s ease;
 }
 
@@ -181,12 +182,10 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    flex: 1;
 }
 
 .card-info {
     transition: filter 0.4s ease;
-    flex: 1;
 }
 
 .card-title-row {
@@ -206,12 +205,11 @@
 .card-location {
     font-size: 0.9rem;
     color: #717171;
-    /* Airbnb gray */
     margin-bottom: 0.5rem;
 }
 
 .card-price-row {
-    margin-top: auto;
+    margin-top: 0.5rem;
     display: flex;
     align-items: baseline;
     gap: 0.25rem;
@@ -318,12 +316,69 @@
     animation: spin 1s linear infinite;
 }
 
+/* Lightbox Styles */
+.lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 90vh;
+    position: relative;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    display: block;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.2s;
+}
+
+.lightbox-close:hover {
+    transform: scale(1.1);
+}
+
 /* Response */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .destinations-grid {
-        grid-template-columns: 1fr;
-        /* Single column on mobile */
-        gap: 1.5rem;
+        column-count: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    .destinations-grid {
+        column-count: 1;
     }
 
     .discovery-search-bar {
